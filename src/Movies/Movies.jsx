@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Pagination, Button, Menu, MenuItem } from '@mui/material'
+import NavBar from '../NavBar/NavBar';
 import MovieCard from '../MovieCard/MovieCard'
 import DefaultView from './DefaultView'
 import EmptyView from './EmptyView'
@@ -48,7 +49,6 @@ const Movies = () => {
   const [anchorEl, setAnchorEl] = useState(null)
   const sortMenuOpen = Boolean(anchorEl);
   const itemsPerPage = 10
-  const searchInputRef = useRef(null)
 
   // Fetch search results -- refetches when query or page number changes
   // Fetch will only trigger when enabled === true
