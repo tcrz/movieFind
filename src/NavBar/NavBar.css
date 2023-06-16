@@ -1,0 +1,16 @@
+nav.main-nav {
+  box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.065);
+  background: white;
+  position: absolute;
+  top:0;
+  z-index: 2;
+}
+
+.logo img {
+  width: 40px;
+}
+
+.main-nav h3 {
+  font-size: 1.5em;
+  line-height: 1.1;
+}
