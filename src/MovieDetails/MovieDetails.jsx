@@ -27,7 +27,7 @@ const MovieDetails = ({ movieId, detailsModalOpen: open, setDetailsModalOpen: se
       onClick={() => open ? setOpen(false) : () => { }}
       style={{ display: open ? "flex" : "none" }}
     >
-      <div className="modal bg-white flex rounded-md p-2" onClick={(e) => e.stopPropagation()}>
+      <div className="modal bg-white flex rounded-md p-2 w-1/2 h-1/2" onClick={(e) => e.stopPropagation()}>
         {isLoading && <LoadingView />}
         {isError && <ErrorView refetch={refetch} />}
         {
