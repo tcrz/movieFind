@@ -23,7 +23,7 @@ const MovieCard = ({ id, title, year, poster, viewMovieDetails }) => {
         </div>
         <div className="view-btn-container p-2 w-full cursor-pointer absolute bottom-0">
           <div className="view-btn flex items-center justify-between borderr border-yellow-300 w-full">
-            <h2 className="borderr border-yellow-300 w-full hover:underline text-white text-center">View Details</h2>
+            <h2 className="borderr border-yellow-300 w-full text-white text-center">View Details</h2>
           </div>
         </div>
       </div>
