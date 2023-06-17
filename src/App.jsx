@@ -82,10 +82,8 @@ function App() {
     return response.data
   }
 
-  const handleQueryOnChange = (e) => {
-    setSearchParams({ query: e.target.value });
-    setQuery(e.target.value)
-  }
+  const handleQueryOnChange = (e) => setQuery(e.target.value)
+
 
   const handlePageChange = (e, page) => setPage(page)
 
@@ -98,6 +96,7 @@ function App() {
   //  Resets page to 1 and calls refetch to trigger a fetch
   const handleSearchButtonOnClick = () => {
     setPage(1)
+    setSearchParams({ query: query });
     refetch()
   }
 
