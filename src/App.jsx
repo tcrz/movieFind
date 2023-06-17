@@ -14,7 +14,7 @@ function App() {
   const itemsPerPage = 10
   console.log(query)
   // Hook to fetch search results
-  const { isError, isFetching, isSuccess, refetch, fetchStatus, status, data: moviesData } = useQuery(
+  const { isError, isFetching, isSuccess, refetch, error, fetchStatus, status, data: moviesData } = useQuery(
     ["/movies"],
     ()=>fetchResults(),
     { enabled: false, staleTime: Infinity, cacheTime: Infinity, refetchOnWindowFocus: false }
@@ -23,7 +23,7 @@ function App() {
 
   let movies = null;
   if (isSuccess){
-    movies = moviesData.Search
+    movies = moviesData
   }
 
   // Trigger refetch on page change only if theres a query
@@ -33,7 +33,7 @@ function App() {
     }
   }, [page])
 
-  console.log(totalResults)
+  console.log(error)
   console.log("current page:", page)
   // console.log("isFetching:", isFetching)
   console.log(movies)
