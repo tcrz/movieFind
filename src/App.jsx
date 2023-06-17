@@ -47,7 +47,7 @@ function App() {
       setQuery(value)
       refetch()
     }
-    console.log("searchparam:", value)
+    // console.log("searchparam:", value)
   }, [])
 
   console.log("current page:", page)
