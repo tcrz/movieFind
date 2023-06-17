@@ -1,0 +1,73 @@
+.modal-backdrop {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: rgba(39, 39, 39, 0.5);
+  backdrop-filter: blur(2px);
+  min-height: 0;
+}
+
+.modal {
+  /* padding:15px; */
+  margin: 0 auto;
+  background: white;
+  /* mix-blend-mode: overlay; */
+  /* border-radius: 32px; */
+  /* width: 270px; */
+  width: 50%;
+  height: 55%;
+}
+
+.modal ::-webkit-scrollbar {
+  width: 5px;
+}
+
+.poster {
+  width: 30%;
+  height: 100%;
+}
+
+.poster img {
+  /* border: 1px solid red; */
+  width: 100%;
+  height: 100%;
+  /* object-fit: fill */
+}
+
+.details-container {
+  height: 100%;
+  width: 70%;
+}
+
+.details .title {
+  /* border: 1px solid red; */
+  max-height: 75px
+} 
+
+.details .title h1 {
+  height: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+.plot {
+  max-height: 28%;
+}
+
+.actors-container {
+  height: 22%;
+  width: 90%;
+}
+
+.actors {
+}
