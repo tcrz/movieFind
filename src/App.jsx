@@ -12,7 +12,7 @@ function App() {
   const [page, setPage] = useState(1)
   const [totalResults, setTotalResults] = useState(null)
   const itemsPerPage = 10
-  console.log(query)
+
   // Hook to fetch search results
   const { isError, isFetching, isSuccess, refetch, error, fetchStatus, status, data: moviesData } = useQuery(
     ["/movies"],
@@ -22,6 +22,7 @@ function App() {
   const isLoading = fetchStatus === 'fetching' && status === 'loading'
 
   let movies = null;
+  // if fetch is successful, set moviesData to movies variable
   if (isSuccess){
     movies = moviesData
   }
@@ -61,8 +62,9 @@ function App() {
 
   const handlePageChange = (e, page) => setPage(page)
 
-  // Calls refetch func to trigger a manual fetch
+  //  Resets page to 1 and calls refetch to trigger a fetch
   const handleSearchButtonOnClick = () => {
+    setPage(1)
     refetch()
   }
 
