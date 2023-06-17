@@ -14,7 +14,7 @@ const MovieCard = ({title, year, poster}) => {
           <div className="borderr border-blue-900 flex flex-col gap-3 items-center " style={{ height: "30%" }}>
             <p className="title text-xl font-medium w-full text-center" >{title}</p>
             <div className="borderr flex flex-wrap justify-around items-center gap-5" style={{ minWidth: "55%" }}>
-              <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{2023}</p>
+              <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{year}</p>
             </div>
           </div>
         </div>
