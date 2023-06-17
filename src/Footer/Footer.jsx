@@ -35,7 +35,7 @@ const menuStyles = {
   }
 }
 
-const Footer = ({page, numOfPages, handlePageNumOnChange}) => {
+const Footer = ({page, numOfPages, handlePageChange}) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const sortMenuOpen = Boolean(anchorEl);
 
@@ -54,7 +54,7 @@ const Footer = ({page, numOfPages, handlePageNumOnChange}) => {
         sx={paginationStyles}
         page={page}
         color="primary"
-        onChange={handlePageNumOnChange} 
+        onChange={handlePageChange} 
       />
       <div>
         <Button
