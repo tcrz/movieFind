@@ -1,10 +1,10 @@
 import React from 'react'
-import { InputAdornment, OutlinedInput } from '@mui/material'
+import { Button, InputAdornment, OutlinedInput } from '@mui/material'
 import { AiOutlineSearch } from 'react-icons/ai';
 import "./NavBar.css"
 import logo from './logo.png'
 
-const NavBar = ({handleSearchButtonOnClick, query}) => {
+const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query }) => {
   return (
     <>
       <nav className="main-nav w-full bg-noiseBg flex items-center justify-between borderr-2 border-red-300 px-7 pt-0 bg-red-400" style={{ height: "9vh" }}>
@@ -15,8 +15,23 @@ const NavBar = ({handleSearchButtonOnClick, query}) => {
           </div>
         </div>
         <div className="borderr" style={{ width: "27%" }}>
-          <OutlinedInput className="bg-noiseBg input-field invisible sm:visible" style={{ width: "100%" }} placeholder="Search movie"
-            endAdornment={<InputAdornment position="end"><p className={`cursor-pointer text-sm text-white rounded-full ${!query ? "bg-gray-300" : "bg-blue-600"} hover:bg-blue-900`} style={{padding: ".6em .8em", boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)"}}><AiOutlineSearch /></p></InputAdornment>} />
+          <OutlinedInput
+            className="bg-noiseBg input-field invisible sm:visible"
+            style={{ width: "100%" }}
+            placeholder="Search movie"
+            value={query}
+            onChange={handleQueryOnChange}
+            endAdornment={
+              <InputAdornment position="end">
+                <Button
+                  className={`cursor-default !px-0 !py-2 text-sm !rounded-full ${!query ? "!text-gray-600 !bg-gray-300" : "cursor-pointer !text-white !bg-blue-600 hover:!bg-blue-700"}`}
+                  style={{ boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.1)" }}
+                  onClick={handleSearchButtonOnClick}
+                  disabled={query.trim().length === 0}>
+                  <AiOutlineSearch />
+                </Button>
+              </InputAdornment>
+            } />
         </div>
         <div className="borderr logo" style={{ borderColor: "#868686", padding: ".3em" }}>
           <img src={logo} alt="pokemon group" className="borrder border-orange-400" />
