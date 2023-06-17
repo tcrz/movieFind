@@ -3,10 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-
   * {
     margin: 0;
-    padding: 0
+    padding: 0;
   }
 
   :root {
@@ -21,9 +20,9 @@
   }
 
   h1, h2, h3 {
-    font-family: 'Clash Display';
+    font-family: "Clash Display";
   }
-  
+
   h1 {
     font-size: 3.2em;
     line-height: 1.1;
@@ -36,14 +35,14 @@
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background:none;
+    background: none;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     @apply bg-gray-300 rounded
     /* background: #bababa; */
-    /* border-radius: 10px; */
+    /* border-radius: 10px; */;
   }
 
   /* Handle on hover */
@@ -51,7 +50,6 @@
     background: #a4a3a3;
   }
 }
-
 
 @layer components {
   .input-field {
@@ -62,24 +60,22 @@
     padding: 20px 5px;
     font-size: 0.9em !important;
     outline: none;
-    background: white
+    background: white;
+  }
+
+  @keyframes slidein {
+    0% {
+      transform: translateX(90%);
+    }
+
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .movies-list {
+    animation-duration: 0.3s;
+    -webkit-animation-name: slidein;
+    animation-name: slidein;
   }
 }
-/* button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
