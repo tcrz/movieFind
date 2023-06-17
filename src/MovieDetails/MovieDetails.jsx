@@ -48,7 +48,11 @@ const MovieDetails = ({ movieId, detailsModalOpen: open, setDetailsModalOpen: se
                     <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{movie.Type}</p>
                   </div>
                 </div>
-                <Rating name="movie-rating" defaultValue={2.5} precision={0.5} readOnly />
+                {
+                  movie.imdbRating !== "N/A" ? 
+                  <Rating name="movie-rating" defaultValue={+movie.imdbRating * 0.5} precision={0.1} readOnly /> :
+                  <p className="text-sm text-red-600">No rating available</p>
+                }
                 <div className="plot text-sm overflow-y-scroll px-2 text-center">
                   <p>{movie.Plot}</p>
                 </div>
