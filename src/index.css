@@ -73,7 +73,7 @@
     }
   }
 
-  .movies-list {
+  .movies-list, .modal {
     animation-duration: 0.3s;
     -webkit-animation-name: slidein;
     animation-name: slidein;
