@@ -1,10 +1,33 @@
-import React from 'react'
-import { Button, InputAdornment, OutlinedInput } from '@mui/material'
-import { AiOutlineSearch } from 'react-icons/ai';
+import React, { useState } from 'react'
+import { Menu, MenuItem, Button, InputAdornment, OutlinedInput } from '@mui/material'
+import { AiOutlineSearch, AiFillFilter} from 'react-icons/ai';
 import "./NavBar.css"
-import logo from './logo.png'
+
+const menuStyles = {
+  '& MuiList-root': {
+    borderRadius: "8px",
+  },
+  '& li p': {
+    fontFamily: "Clash display",
+  },
+  '& li:hover': {
+    color: "white",
+    backgroundColor: `#2563eb`,
+  }
+}
 
 const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query }) => {
+  const [anchorEl, setAnchorEl] = useState(null)
+  const sortMenuOpen = Boolean(anchorEl);
+
+  const handleSortMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleSortMenuClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <>
       <nav className="main-nav w-full bg-noiseBg flex items-center justify-between borderr-2 border-red-300 px-4 pt-0 bg-red-400 sm:px-7" style={{ height: "9vh" }}>
@@ -33,8 +56,27 @@ const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query }) => {
               </InputAdornment>
             } />
         </div>
-        <div className="borderr logo" style={{ borderColor: "#868686", padding: ".3em" }}>
-          <img src={logo} alt="pokemon group" className="borrder border-orange-400" />
+        <div>
+          <Button
+            className="!capitalize rounded-sm !flex !items-center gap-1 !bg-blue-600 !text-white"
+            aria-controls={sortMenuOpen ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={sortMenuOpen ? 'true' : undefined}
+            onClick={handleSortMenuOpen}>
+              <AiFillFilter />
+              <p className="text-xs" style={{ fontFamily: "Clash Display" }}> Sort:&nbsp;&nbsp;default</p></Button>
+          <Menu
+            id="basic-menu"
+            open={sortMenuOpen}
+            onClose={handleSortMenuClose}
+            anchorEl={anchorEl}
+            sx={menuStyles}
+            value="Release date"
+          // onChange={handlePageSizeOnChange}
+          >
+            <MenuItem onClick={handleSortMenuClose} value="Default" disableRipple><p>Default</p></MenuItem>
+            <MenuItem onClick={handleSortMenuClose} value="Release date" disableRipple><p>Release date</p></MenuItem>
+          </Menu>
         </div>
       </nav>
     </>
