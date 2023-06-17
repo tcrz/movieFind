@@ -18,6 +18,12 @@
   object-fit: fill;
 }
 
+.title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .view-btn-container {
   display: none;
 }
@@ -25,7 +31,7 @@
 .view-btn {
   display: hidden;
   border-radius: 14px;
-  padding: 12px;
+  padding: 8px;
   @apply bg-blue-600;
 }
 
