@@ -5,36 +5,39 @@ import NavBar from './NavBar/NavBar';
 import { useQuery } from '@tanstack/react-query';
 import Footer from './Footer/Footer';
 import axios from 'axios';
+import MovieDetails from './MovieDetails/MovieDetails';
 
 
 function App() {
   const [query, setQuery] = useState("")
   const [page, setPage] = useState(1)
   const [totalResults, setTotalResults] = useState(null)
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false)
+  const [movieId, setmovieId] = useState(null)
+  const [sortType, setSortType] = useState()
   const itemsPerPage = 10
 
   // Hook to fetch search results
   const { isError, isFetching, isSuccess, refetch, error, fetchStatus, status, data: moviesData } = useQuery(
     ["/movies"],
-    ()=>fetchResults(),
+    () => fetchResults(),
     { enabled: false, staleTime: Infinity, cacheTime: Infinity, refetchOnWindowFocus: false }
   )
   const isLoading = fetchStatus === 'fetching' && status === 'loading'
 
   let movies = null;
   // if fetch is successful, set moviesData to movies variable
-  if (isSuccess){
+  if (isSuccess) {
     movies = moviesData
   }
 
   // Trigger refetch on page change only if theres a query
-  useEffect(()=>{
+  useEffect(() => {
     if (query) {
       refetch()
     }
   }, [page])
 
-  console.log(error)
   console.log("current page:", page)
   // console.log("isFetching:", isFetching)
   console.log(movies)
@@ -48,7 +51,7 @@ function App() {
     numOfPages = Math.floor(totalResults / itemsPerPage) + 1
   }
 
-  // Function to make fetch call
+  // Function to make fetch movies
   async function fetchResults() {
     const url = `https://www.omdbapi.com/?s=${query}&page=${page}&apikey=afd2d51f&r=json`
     console.log(url)
@@ -62,6 +65,12 @@ function App() {
 
   const handlePageChange = (e, page) => setPage(page)
 
+  // sets the movie id to state and modal to true
+  const viewMovieDetails = (id) => {
+    setmovieId(id)
+    setDetailsModalOpen(true)
+  }
+
   //  Resets page to 1 and calls refetch to trigger a fetch
   const handleSearchButtonOnClick = () => {
     setPage(1)
@@ -70,8 +79,24 @@ function App() {
 
   return (
     <div className="h-screen border relative overflow-hidden bg-gray-200/80">
-      <NavBar handleSearchButtonOnClick={handleSearchButtonOnClick} query={query} handleQueryOnChange={handleQueryOnChange} />
-      <Movies movies={movies} isLoading={isLoading} isFetching={isFetching} isError={isError} isSuccess={isSuccess} refetch={refetch} />
+      <NavBar
+        handleSearchButtonOnClick={handleSearchButtonOnClick}
+        query={query}
+        handleQueryOnChange={handleQueryOnChange} />
+      <Movies
+        viewMovieDetails={viewMovieDetails}
+        movies={movies}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
+        refetch={refetch}
+      />
+      <MovieDetails
+        detailsModalOpen={detailsModalOpen}
+        setDetailsModalOpen={setDetailsModalOpen}
+        movieId={movieId}
+      />
       {isSuccess && <Footer page={page} numOfPages={numOfPages} handlePageChange={handlePageChange} />}
     </div>
   )
