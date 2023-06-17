@@ -7,8 +7,8 @@ const DefaultView = () => {
       <div className="borderr-2 border-black flex flex-col items-center">
         <img className="" src={logo} alt="moviefind logo" style={{width:"40%", height: "40%"}}/>
         <h1 className="font-semibold">Movie&nbsp;<span className="text-blue-600">Find</span></h1>
-        <p className="text-xl text-gray-500">Search for movies and check out some results.</p>
-        <p className="text-xl text-gray-500">Cheers!</p>
+        <p className="text-xl text-gray-500 text-center">Search for movies and check out some results.</p>
+        <p className="text-xl text-gray-500 text-center">Cheers!</p>
       </div>
       
     </div>
