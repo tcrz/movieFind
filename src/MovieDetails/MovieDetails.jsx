@@ -42,7 +42,7 @@ const MovieDetails = ({ movieId, detailsModalOpen: open, setDetailsModalOpen: se
                   <h1 className="text-2xl font-bold borderr w-full text-center">{movie.Title}</h1>
                 </div>
                 <div className="tags">
-                  <div className="borderr flex flex-wrap justify-around items-center gap-5" style={{ minWidth: "55%" }}>
+                  <div className="borderr flex flex-wrap justify-around items-center gap-3" style={{ minWidth: "55%" }}>
                     <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{movie.Year}</p>
                     <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{movie.Genre}</p>
                     <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{movie.Type}</p>
@@ -58,7 +58,7 @@ const MovieDetails = ({ movieId, detailsModalOpen: open, setDetailsModalOpen: se
                 </div>
                 <div className="actors-container borderr flex flex-col justify-around items-center gap-1">
                   <h2 className="font-semibold">Starring:</h2>
-                  <div className="actors flex flex-wrap borderr-2 w-full gap-2 overflow-y-scroll">
+                  <div className="actors flex flex-wrap border-2 w-full gap-2 overflow-y-scroll justify-around items-center">
                     {
                       movie.Actors.split(", ").map((actor) => <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{actor}</p>)
                     }

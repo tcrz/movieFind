@@ -66,8 +66,6 @@
 
 .actors-container {
   height: 22%;
+  max-height: 25%;
   width: 90%;
-}
-
-.actors {
 }
