@@ -6,10 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 import Footer from './Footer/Footer';
 import axios from 'axios';
 import MovieDetails from './MovieDetails/MovieDetails';
+import { useSearchParams } from "react-router-dom";
 
 
 function App() {
   const [query, setQuery] = useState("")
+  const [searchParams, setSearchParams] = useSearchParams({});
   const [page, setPage] = useState(1)
   const [totalResults, setTotalResults] = useState(null)
   const [detailsModalOpen, setDetailsModalOpen] = useState(false)
@@ -38,6 +40,16 @@ function App() {
     }
   }, [page])
 
+   // Trigger refetch if theres a URL parameter
+  useEffect(() => {
+    const value = searchParams.get('query')
+    if (value !== null || value.trim().length === 0) {
+      setQuery(value)
+      refetch()
+    }
+    console.log("searchparam:", value)
+  }, [])
+
   console.log("current page:", page)
   // console.log("isFetching:", isFetching)
   console.log(movies)
@@ -53,7 +65,16 @@ function App() {
 
   // Function to make fetch movies
   async function fetchResults() {
-    const url = `https://www.omdbapi.com/?s=${query}&page=${page}&apikey=afd2d51f&r=json`
+    console.log(query)
+    const value = searchParams.get('query')
+    // set searchQuery to url param if present else set to query
+    let searchQuery;
+    if (value !== null) {
+      searchQuery = value
+    } else {
+      searchQuery = query
+    }
+    const url = `https://www.omdbapi.com/?s=${searchQuery}&page=${page}&apikey=afd2d51f&r=json`
     console.log(url)
     const response = await axios.get(url)
     // Set the total number of results to state 
@@ -61,7 +82,10 @@ function App() {
     return response.data
   }
 
-  const handleQueryOnChange = (e) => setQuery(e.target.value)
+  const handleQueryOnChange = (e) => {
+    setSearchParams({ query: e.target.value });
+    setQuery(e.target.value)
+  }
 
   const handlePageChange = (e, page) => setPage(page)
 
