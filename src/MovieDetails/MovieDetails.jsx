@@ -27,7 +27,7 @@ const MovieDetails = ({ movieId, detailsModalOpen: open, setDetailsModalOpen: se
       onClick={() => open ? setOpen(false) : () => { }}
       style={{ display: open ? "flex" : "none" }}
     >
-      <div className="modal bg-white flex rounded-md p-2 w-1/2 h-1/2" onClick={(e) => e.stopPropagation()}>
+      <div className="modal bg-white flex rounded-md p-2 w-5/6 h-1/2 sm:w-1/2" onClick={(e) => e.stopPropagation()}>
         {isLoading && <LoadingView />}
         {isError && <ErrorView refetch={refetch} />}
         {
@@ -42,10 +42,9 @@ const MovieDetails = ({ movieId, detailsModalOpen: open, setDetailsModalOpen: se
                   <h1 className="text-2xl font-bold borderr w-full text-center">{movie.Title}</h1>
                 </div>
                 <div className="tags">
-                  <div className="borderr flex flex-wrap justify-around items-center gap-3" style={{ minWidth: "55%" }}>
+                  <div className="borderr flex flex-wrap justify-around items-center gap-2" style={{ minWidth: "55%" }}>
                     <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{movie.Year}</p>
                     <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{movie.Genre}</p>
-                    <p className="text-sm rounded-xl bg-gray-200 px-2" style={{ background: "#EEEEEE" }}>{movie.Type}</p>
                   </div>
                 </div>
                 {
