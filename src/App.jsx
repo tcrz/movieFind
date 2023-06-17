@@ -43,7 +43,7 @@ function App() {
    // Trigger refetch if theres a URL parameter
   useEffect(() => {
     const value = searchParams.get('query')
-    if (value !== null || value.trim().length === 0) {
+    if (value !== null && value.trim().length === 0) {
       setQuery(value)
       refetch()
     }
