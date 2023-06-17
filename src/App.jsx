@@ -82,8 +82,10 @@ function App() {
     return response.data
   }
 
-  const handleQueryOnChange = (e) => setQuery(e.target.value)
-
+  const handleQueryOnChange = (e) => {
+    setSearchParams({ query: e.target.value });
+    setQuery(e.target.value)
+  }
 
   const handlePageChange = (e, page) => setPage(page)
 
@@ -96,7 +98,6 @@ function App() {
   //  Resets page to 1 and calls refetch to trigger a fetch
   const handleSearchButtonOnClick = () => {
     setPage(1)
-    setSearchParams({ query: query });
     refetch()
   }
 
@@ -120,7 +121,7 @@ function App() {
         setDetailsModalOpen={setDetailsModalOpen}
         movieId={movieId}
       />
-      {isSuccess && <Footer page={page} numOfPages={numOfPages} handlePageChange={handlePageChange} />}
+      {isSuccess && movies.Response === "True" && <Footer page={page} numOfPages={numOfPages} handlePageChange={handlePageChange} />}
     </div>
   )
 }
