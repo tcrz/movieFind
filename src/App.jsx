@@ -78,7 +78,7 @@ function App() {
     } else {
       searchQuery = query
     }
-    const url = `https://www.omdbapi.com/?s=${searchQuery}&page=${page}&apikey=afd2d51f&r=json`
+    const url = `https://www.omdbapi.com/?s=${searchQuery.trim()}&page=${page}&apikey=afd2d51f&r=json`
     console.log(url)
     const response = await axios.get(url)
     // Set the total number of results to state 

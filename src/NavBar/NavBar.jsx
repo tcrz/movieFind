@@ -38,7 +38,7 @@ const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query, setSort
       <nav className="main-nav w-full bg-noiseBg flex items-center justify-between borderr-2 border-red-300 px-4 pt-0 bg-red-400 sm:px-7 gap-2" style={{ height: "9vh" }}>
         {/* Logo and searchbar */}
         <div className="borderr-2 hidden sm:flex items-center gapp-3 " style={{ height: "100%" }}>
-          <div className='cursor-pointer w-full flex items-center gap-3'>
+          <div className='w-full flex items-center gap-3'>
             <h3 className="text-xl font-semibold">Movie&nbsp;<span className="text-blue-600">Find</span></h3>
           </div>
         </div>
