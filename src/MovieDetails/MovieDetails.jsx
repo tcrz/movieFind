@@ -8,6 +8,8 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 const MovieDetails = ({ movieId, detailsModalOpen: open, setDetailsModalOpen: setOpen }) => {
+  // This hook will run whenever movieId changes
+  // This ensures the appropriate movie data is returned based on the given movieId
   const { isError, isLoading, isSuccess, refetch, error, data: movie } = useQuery(
     ["/movies", movieId],
     () => fetchMovieData(),

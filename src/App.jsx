@@ -44,7 +44,7 @@ function App() {
     }
   }, [page])
 
-   // Trigger refetch if theres a URL parameter
+  // Trigger refetch if theres a URL parameter
   useEffect(() => {
     const value = searchParams.get('query')
     if (value !== null && value.trim().length !== 0) {
@@ -100,6 +100,7 @@ function App() {
     }
     return sortedMovies
   }
+
   // sets the movie id to state and modal to true
   const viewMovieDetails = (id) => {
     setmovieId(id)
@@ -117,7 +118,7 @@ function App() {
       <NavBar
         handleSearchButtonOnClick={handleSearchButtonOnClick}
         query={query}
-        handleQueryOnChange={handleQueryOnChange} 
+        handleQueryOnChange={handleQueryOnChange}
         sortType={sortType}
         setSortType={setSortType}
       />
