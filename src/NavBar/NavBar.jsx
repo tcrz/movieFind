@@ -33,6 +33,7 @@ const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query, setSort
     setAnchorEl(null);
   };
 
+  // Run search when "Enter" key is pressed
   const handleSearchOnKeyPress = (e) => {
     if (e.key === "Enter") {
         e.preventDefault()
