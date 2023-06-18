@@ -33,6 +33,13 @@ const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query, setSort
     setAnchorEl(null);
   };
 
+  const handleSearchOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        handleSearchButtonOnClick()
+    }
+}
+
   return (
     <>
       <nav className="main-nav w-full bg-noiseBg flex items-center justify-between borderr-2 border-red-300 px-4 pt-0 bg-red-400 sm:px-7 gap-2" style={{ height: "9vh" }}>
@@ -49,6 +56,7 @@ const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query, setSort
             placeholder="Search movie"
             value={query}
             onChange={handleQueryOnChange}
+            onKeyPress={handleSearchOnKeyPress}
             endAdornment={
               <InputAdornment position="end">
                 <Button
