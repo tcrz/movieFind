@@ -13,10 +13,10 @@ function App() {
   const [query, setQuery] = useState("")
   const [searchParams, setSearchParams] = useSearchParams({});
   const [page, setPage] = useState(1)
-  const [totalResults, setTotalResults] = useState(null)
+  const [totalResults, setTotalResults] = useState(0)
   const [detailsModalOpen, setDetailsModalOpen] = useState(false)
   const [movieId, setmovieId] = useState(null)
-  const [sortType, setSortType] = useState()
+  const [sortType, setSortType] = useState("Default")
   const itemsPerPage = 10
 
   // Hook to fetch search results
@@ -28,9 +28,13 @@ function App() {
   const isLoading = fetchStatus === 'fetching' && status === 'loading'
 
   let movies = null;
-  // if fetch is successful, set moviesData to movies variable
+  // if fetch is successful, create a dictionary with moviesData body and set it to movies
   if (isSuccess) {
-    movies = moviesData
+    movies = {
+      Response: moviesData.Response,
+      Error: moviesData?.Error ? moviesData.Error : null,
+      Search: moviesData?.Search ? handleMoviesSort(moviesData.Search, sortType) : null
+    }
   }
 
   // Trigger refetch on page change only if theres a query
@@ -47,10 +51,10 @@ function App() {
       setQuery(value)
       refetch()
     }
-    console.log("searchparam:", value)
+    // console.log("searchparam:", value)
   }, [])
 
-  console.log("current page:", page)
+  // console.log("current page:", page)
   // console.log("isFetching:", isFetching)
   console.log(movies)
 
@@ -89,6 +93,13 @@ function App() {
 
   const handlePageChange = (e, page) => setPage(page)
 
+  function handleMoviesSort(movies, type) {
+    let sortedMovies = movies
+    if (type === "Year") {
+      sortedMovies = [...movies].sort((a, b) => a.Year - b.Year)
+    }
+    return sortedMovies
+  }
   // sets the movie id to state and modal to true
   const viewMovieDetails = (id) => {
     setmovieId(id)
@@ -106,7 +117,10 @@ function App() {
       <NavBar
         handleSearchButtonOnClick={handleSearchButtonOnClick}
         query={query}
-        handleQueryOnChange={handleQueryOnChange} />
+        handleQueryOnChange={handleQueryOnChange} 
+        sortType={sortType}
+        setSortType={setSortType}
+      />
       <Movies
         viewMovieDetails={viewMovieDetails}
         movies={movies}

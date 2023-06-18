@@ -16,9 +16,14 @@ const menuStyles = {
   }
 }
 
-const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query }) => {
+const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query, setSortType, sortType }) => {
   const [anchorEl, setAnchorEl] = useState(null)
   const sortMenuOpen = Boolean(anchorEl);
+
+  const handleSetSortType = (type) => {
+    setSortType(type)
+    handleSortMenuClose()
+  }
 
   const handleSortMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,7 +69,7 @@ const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query }) => {
             aria-expanded={sortMenuOpen ? 'true' : undefined}
             onClick={handleSortMenuOpen}>
               <AiFillFilter />
-              <p className="text-xs" style={{ fontFamily: "Clash Display" }}> Sort:&nbsp;&nbsp;default</p></Button>
+              <p className="text-xs" style={{ fontFamily: "Clash Display" }}> Sort:&nbsp;&nbsp;{sortType}</p></Button>
           <Menu
             id="basic-menu"
             open={sortMenuOpen}
@@ -72,10 +77,9 @@ const NavBar = ({ handleQueryOnChange, handleSearchButtonOnClick, query }) => {
             anchorEl={anchorEl}
             sx={menuStyles}
             value="Release date"
-          // onChange={handlePageSizeOnChange}
           >
-            <MenuItem onClick={handleSortMenuClose} value="Default" disableRipple><p>Default</p></MenuItem>
-            <MenuItem onClick={handleSortMenuClose} value="Release date" disableRipple><p>Release date</p></MenuItem>
+            <MenuItem onClick={()=>handleSetSortType("Default")} value="Default" disableRipple><p>Default</p></MenuItem>
+            <MenuItem onClick={()=>handleSetSortType("Year")} value="Release date" disableRipple><p>Release year</p></MenuItem>
           </Menu>
         </div>
       </nav>
